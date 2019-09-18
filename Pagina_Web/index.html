@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+    <title>Minha Página</title>
+    <meta charset="utf-8">
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <i class="glyphicon glyphicon-folder-open navbar-brand"></i> <a class="navbar-brand" href="#">Minha Página Web</a>
+                </div>
+            
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="#" onclick="service()">Contato</a></li>
+                    <li><a href="#" onclick="service()">Sobre</a></li>
+                </ul>
+                
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#" id="username"><i class="glyphicon glyphicon-ok"></i> Entrar</a></li>
+                    <li><a href="#" id="registrar" onclick="service()"><i class="glyphicon glyphicon-user"></i> Registrar</a></li>
+                </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+            </nav>
+
+    <div class="container">
+        <h2 class="text-center">Seja bem vindo!</h2>
+        <hr>
+        <div class="col-md-6">
+            <h4 class=" text-center">Faça login</h4>
+            <form asp-action="Login">
+                <div class="row">
+                    <div class="form-group col-md-8 col-md-offset-2">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <div class="form-group">
+                            <label>Usuário</label>
+                            <input id="username_form" class="form-control" placeholder="Entre com seu nome de usuário"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Senha</label>
+                            <input type="password" class="form-control" placeholder="Entre com sua senha"/>
+                        </div>
+                        <div class="input-group">
+                            <input type="checkbox"> Mantenha-me conectado
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-success btn-sm" onclick="logar()"><i class="glyphicon glyphicon-ok"></i> Entrar</button>
+                    <button type="submit" class="btn btn-sm btn-primary" onclick="service()"><i class="glyphicon glyphicon-user"></i> Registrar</button>
+                </div>
+            </form>
+
+        </div>
+        <div class="col-md-6">
+            <br />
+            <img src="imgs/1.jpg" id="img" class="thumbnail img-responsive" title="Clique para trocar a imagem" onclick="trocarImg()">
+        </div>
+    </div>
+
+    <script>
+        const userForm = document.getElementById('username_form')
+        let i = 2
+
+        const logar = () => {
+            document.getElementById('username').innerHTML = `Olá ${userForm.value}`
+            const registrar = document.getElementById('registrar')
+            registrar.setAttribute('onclick', 'logout()')
+            registrar.innerHTML = 'Logout'
+            alert(`Bem vindo de volta ${userForm.value}!`)
+        }
+
+        const logout = () => {
+            alert(`Até logo ${userForm.value}!`)
+            location.reload();
+        }
+        
+        const service = () => {
+            alert('Página temporariamente indisponível.\nPor favor tente mais tarde.')
+        }
+
+        const trocarImg = () => {
+            if(i > 7) {
+                i = 1
+            }
+            img.attributes.src.value = `imgs/${i}.jpg`
+            i++
+        }
+    </script>
+</body>
+<footer class="text-center">
+    <div class="container">
+        <hr>
+        <p>2019 - Regis &copy</p>
+    </div>
+</footer>
+</html>
+
+
+
